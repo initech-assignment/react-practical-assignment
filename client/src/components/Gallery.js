@@ -1,38 +1,56 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {MAIN_URL} from "../utils/constants";
-import {setPageDataAction, setPostsAction, setTotalPagesAction} from "../redux/actions/gActions";
+import {setTotalAction, setTotalPages} from "../redux/actions/gActions";
 import Post from "./Post";
 
 
 const Gallery = () => {
     const pageNumber = useSelector(state => state.pageNumber);
-    const pageData = useSelector(state => state.pageData);
+    const [pageData, setPageData] = useState();
+    const userName = useSelector(state => state.userName);
+    const total = useSelector(state => state.total);
+    const searchWord = useSelector(state => state.searchWord);
     const dispatch = useDispatch();
+
+
 
     useEffect(() => {
 
-        fetch(`${MAIN_URL}/post/page/${pageNumber}`)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data)
+        if(searchWord){
+            fetch(`${MAIN_URL}/post/search/${searchWord}/`)
+                .then(response => response.json())
+                .then(data =>{
 
-                dispatch(setPostsAction(data.result));
-                dispatch(setTotalPagesAction(data.totalPages));
-                dispatch(setPageDataAction(data));
+                    setPageData(prevState => ({...prevState, result: data.result }))
+                })
+        }else {
+            fetch(`${MAIN_URL}/post/page/${pageNumber}`)
+                .then(response => response.json())
+                .then(data => {
 
-            })
-            .catch(() => {
-                dispatch(setPostsAction(null));
-            })
+                    dispatch(setTotalPages(data.totalPages))
+                    dispatch(setTotalAction(data.total))
+                    setPageData(data);
+
+                })
+                .catch((e) => {
+                    console.log(e);
+                })
+        }
 
 
-    }, [pageNumber]);
+    }, [pageNumber, userName, total, searchWord]);
 
     if (pageData) {
         return (
-            <div style={{ display: 'flex' , flexWrap: 'wrap' }}>
-                {pageData.result.map(post => <div style={{ flex: '0 0 33.33%' }}><Post key={post.id} id={post.id}/></div>)}
+            <div className='container'>
+                <div className='row'>
+                    {pageData.result.map((post, index) => <div key={index} className='col-lg-4 col-md-6 col-sm-12'><Post key={index}
+                                                                                                    post={post} setPageData={setPageData}/>
+                    </div>)}
+
+                </div>
             </div>
 
         );
