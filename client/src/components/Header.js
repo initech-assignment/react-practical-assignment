@@ -1,6 +1,6 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {setPageAction, setStateAction} from "../redux/actions/gActions";
+import {setStateAction} from "../redux/actions/gActions";
 
 const Header = () => {
     const userName = useSelector(state => state.userName);

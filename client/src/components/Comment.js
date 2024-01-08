@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {MAIN_URL} from "../utils/constants";
 import EditComment from "./EditComment";
-import login from "./Login";
+
 
 
 const Comment = ({currentPost, user, setCurrentPost, comment}) => {

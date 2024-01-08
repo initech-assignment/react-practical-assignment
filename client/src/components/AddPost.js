@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Button, Modal} from "react-bootstrap";
 import {MAIN_URL} from "../utils/constants";
 import {useDispatch, useSelector} from "react-redux";
-import {setPageAction, setTotalAction, setTotalPages} from "../redux/actions/gActions";
+import {setPageAction, setTotalAction} from "../redux/actions/gActions";
 import tempImage from "../images/temp_image.png";
 
 const AddPost = () => {
@@ -47,7 +47,7 @@ const AddPost = () => {
                     method: 'POST',
                     body: formData
                 }).then(resp => resp.json())
-                    .then(data => {
+                    .then(() => {
                         dispatch(setTotalAction(total+1))
                         dispatch(setPageAction(totalPages));
                     })

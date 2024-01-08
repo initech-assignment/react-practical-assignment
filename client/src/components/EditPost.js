@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Modal} from "react-bootstrap";
 import {MAIN_URL} from "../utils/constants";
-import {useDispatch, useSelector} from "react-redux";
-import {setPageAction} from "../redux/actions/gActions";
+
 
 const EditPost = ({currentPost, setCurrentPost}) => {
     const [show, setShow] = useState(false);

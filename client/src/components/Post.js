@@ -55,7 +55,7 @@ const Post = ({post, setPageData}) => {
     const handleClickDeletePost = () => {
         fetch(`${MAIN_URL}/post/${currentPost.id}/`, {
             method: 'DELETE'
-        }).then(resp => {
+        }).then(() => {
             fetch(`${MAIN_URL}/post/page/${pageNumber}`)
                 .then(response => response.json())
                 .then(data => {
