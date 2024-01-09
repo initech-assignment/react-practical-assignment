@@ -6,7 +6,7 @@ import {useSelector} from "react-redux";
 
 const Content = () => {
     const searchWord = useSelector(state => state.searchWord);
-    const pageNumber = useSelector(state => state.pageNumber);
+
     return (
         <div className='container'>
             <Gallery/>
