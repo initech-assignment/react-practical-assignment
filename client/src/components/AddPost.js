@@ -61,7 +61,7 @@ const AddPost = () => {
     const handleShow = () => setShow(true);
     return (
         <div>
-            <Button className='btn btn-secondary' variant="primary" onClick={handleShow}>
+            <Button className='btn btn-primary' variant="primary" onClick={handleShow}>
                 Add post
             </Button>
 

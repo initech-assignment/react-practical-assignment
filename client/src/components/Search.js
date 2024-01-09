@@ -8,7 +8,6 @@ const Search = () => {
     const [searchWord, setSearchWord] = useState();
     const dispatch = useDispatch();
 
-
     const handleEnterKeyPress = () => {
         dispatch(setSearchWordAction(searchWord));
     }
@@ -17,25 +16,24 @@ const Search = () => {
             handleEnterKeyPress();
         }
     }
-    const handleClearSearch = () =>{
-        const searchInput = document.getElementById('searchInput');
-        searchInput.value = null;
-        dispatch(setSearchWordAction(null));
-        setSearchWord('');
+
+    const handleOnChange = (event) =>
+    {
+        if(event.target.value){
+            setSearchWord(event.target.value)
+        }else{
+            dispatch(setSearchWordAction(null));
+        }
     }
+
 
     return (
         <div className='container'>
             <div className='row'>
-                <div className='col-2 float-start'><AddPost/></div>
-                <input id='searchInput' className='col-5' placeholder='Search' type='text' onKeyDown={handleKeyDown}
-                       onChange={e => setSearchWord(e.target.value)}/>
-                {searchWord &&
-                <div className='col-1'>
-                <button style={{fontSize: '20px'}} onClick={handleClearSearch}>X</button>
-                </div>
-                }
-
+                <div className='col-1'></div>
+                <div className='col-2'><AddPost/></div>
+                <input id='searchInput' className='col-5 form-control-sm' placeholder='Search' type='search' onKeyDown={handleKeyDown}
+                       onChange={handleOnChange}/>
 
             </div>
         </div>

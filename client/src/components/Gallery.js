@@ -5,6 +5,7 @@ import {setTotalAction, setTotalPages} from "../redux/actions/gActions";
 import Post from "./Post";
 
 
+
 const Gallery = () => {
     const pageNumber = useSelector(state => state.pageNumber);
     const [pageData, setPageData] = useState();
@@ -14,17 +15,16 @@ const Gallery = () => {
     const dispatch = useDispatch();
 
 
-
     useEffect(() => {
 
-        if(searchWord){
+        if (searchWord) {
             fetch(`${MAIN_URL}/post/search/${searchWord}/`)
                 .then(response => response.json())
-                .then(data =>{
+                .then(data => {
 
-                    setPageData(prevState => ({...prevState, result: data.result }))
+                    setPageData(prevState => ({...prevState, result: data.result}))
                 })
-        }else {
+        } else {
             fetch(`${MAIN_URL}/post/page/${pageNumber}`)
                 .then(response => response.json())
                 .then(data => {
@@ -43,15 +43,20 @@ const Gallery = () => {
     }, [pageNumber, userName, total, searchWord]);
 
     if (pageData) {
-        return (
-            <div className='container'>
-                <div className='row'>
-                    {pageData.result.map((post, index) => <div key={index} className='col-lg-4 col-md-6 col-sm-12'><Post key={index}
-                                                                                                    post={post} setPageData={setPageData}/>
-                    </div>)}
 
+        return (
+
+                <div className='container'>
+                    <div className='row'>
+                        {pageData.result.map((post, index) => <div key={index} className='col-lg-4 col-md-6 col-sm-12'>
+                            <Post key={index}
+                                  post={post} setPageData={setPageData}/>
+                        </div>)}
+
+                    </div>
                 </div>
-            </div>
+
+
 
         );
     } else {

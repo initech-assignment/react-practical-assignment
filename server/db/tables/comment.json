@@ -1,1 +1,1 @@
-[{"id":1,"text":"Это ноут, а не компьютер!","postId":7,"username":"Alex","likes":["Ivan"],"dislikes":[],"date":"1704741006223"},{"id":2,"text":"крут!!!","postId":2,"username":"Alex","likes":[],"dislikes":[],"date":"1704745254665"}]
+[{"id":1,"text":"Это ноут, а не компьютер!","postId":7,"username":"Alex","likes":["Ivan","Alex"],"dislikes":[],"date":"1704741006223"},{"id":2,"text":"крут!!!","postId":2,"username":"Alex","likes":[],"dislikes":["Alex"],"date":"1704745254665"}]
